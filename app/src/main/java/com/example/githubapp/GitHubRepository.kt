@@ -1,6 +1,5 @@
 package com.example.githubapp
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.githubapp.api.ApiService
 import com.example.githubapp.models.ApiConstants
