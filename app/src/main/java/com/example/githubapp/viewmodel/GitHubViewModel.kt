@@ -3,7 +3,7 @@ package com.example.githubapp.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.githubapp.GitHubRepository
+import com.example.githubapp.repository.GitHubRepository
 import com.example.githubapp.models.GitRepoInfo
 import com.example.githubapp.models.Resource
 

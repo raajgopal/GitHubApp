@@ -1,4 +1,4 @@
-package com.example.githubapp
+package com.example.githubapp.ui
 
 import android.content.Context
 import android.os.Bundle
@@ -10,6 +10,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.githubapp.ui.adapters.GitHubInfoRecyclerViewAdapter
+import com.example.githubapp.R
 import com.example.githubapp.api.ApiBuilder
 import com.example.githubapp.models.ApiConstants
 import com.example.githubapp.models.GitRepoInfo

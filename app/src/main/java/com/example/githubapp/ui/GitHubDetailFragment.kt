@@ -1,4 +1,4 @@
-package com.example.githubapp
+package com.example.githubapp.ui
 
 import android.content.Context
 import android.os.Bundle
@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
+import com.example.githubapp.R
 import com.example.githubapp.api.ApiBuilder
 import com.example.githubapp.models.GitRepoInfo
 import com.example.githubapp.models.Status
