@@ -9,4 +9,10 @@
     <string name="creation_at"> Created At: %s</string>
     <string name="closed_at">Closed At: %s</string>
     <string name="git_detail_info">Pull Request Details</string>
+    <string name="change_repo_page">Change Repo Details</string>
+    <string name="data_not_available">Data is not available for the given repo details</string>
+    <string name="change_repo">Change Repo</string>
+    <string name="submit">Submit</string>
+    <string name="repo_text">Enter Repo name</string>
+    <string name="owner_text">Enter Repo Owner</string>
 </resources>
