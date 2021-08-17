@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="icon_width">40dp</dimen>
+    <dimen name="icon_height">40dp</dimen>
+    <dimen name="widget_margin">16dp</dimen>
+    <dimen name="dimen_20sp">20sp</dimen>
+    <dimen name="dimen_16sp">16sp</dimen>
+    <dimen name="internal_widget_margin">8dp</dimen>
+    <dimen name="user_avatar_dimen">150dp</dimen>
+</resources>
