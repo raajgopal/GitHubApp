@@ -1,5 +1,6 @@
 package com.example.githubapp
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.githubapp.api.ApiService
 import com.example.githubapp.models.ApiConstants
@@ -15,13 +16,12 @@ class GitHubRepository(private val apiService: ApiService) {
 
     suspend fun fetchGitRepoInfoFromApi(
         repoInfoLiveData: MutableLiveData<Resource<List<GitRepoInfo>>>
-    ) = withContext(Dispatchers.IO) {
+    ) = withContext(Dispatchers.Default) {
         val repoInfoApiCall = apiService.fetchGitPullRequestInfo(
             ApiConstants.owner,
             ApiConstants.repo,
             ApiConstants.state
         )
-
         repoInfoApiCall.enqueue(object : Callback<List<GitRepoInfo>> {
             override fun onFailure(call: Call<List<GitRepoInfo>>?, t: Throwable?) {
                 repoInfoLiveData.postValue(

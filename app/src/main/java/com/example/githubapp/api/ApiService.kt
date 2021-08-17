@@ -7,7 +7,7 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ApiService {
-    @GET("/{owner}/{repo}/pulls")
+    @GET("/repos/{owner}/{repo}/pulls")
     fun fetchGitPullRequestInfo(
         @Path("owner") owner: String,
         @Path("repo") repo: String,

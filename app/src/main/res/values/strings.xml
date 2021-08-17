@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">GitHubApp</string>
+    <string name="git_pr_title">feat: updating readme text</string>
+    <string name="git_user_name">Daniel Colombus</string>
+    <string name="details">Details</string>
+    <string name="closed_prs">List of Closed PRs</string>
+    <string name="user_name">UserName: %s</string>
+    <string name="pr_title">PR Title: %s</string>
+    <string name="creation_at"> Created At: %s</string>
+    <string name="closed_at">Closed At: %s</string>
+    <string name="git_detail_info">Pull Request Details</string>
 </resources>
