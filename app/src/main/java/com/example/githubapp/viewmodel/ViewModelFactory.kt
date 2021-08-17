@@ -2,7 +2,7 @@ package com.example.githubapp.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.githubapp.GitHubRepository
+import com.example.githubapp.repository.GitHubRepository
 import com.example.githubapp.api.ApiService
 
 class ViewModelFactory(

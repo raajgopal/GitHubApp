@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.fragment.app.Fragment
-import com.example.githubapp.GitHubListFragment
 import com.example.githubapp.R
 
 class MainActivity : AppCompatActivity() {
