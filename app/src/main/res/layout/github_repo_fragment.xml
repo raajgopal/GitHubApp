@@ -20,24 +20,44 @@
         android:layout_gravity="center"
         android:orientation="vertical">
 
-
-        <TextView
-            android:id="@+id/textView"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/widget_margin"
-            android:layout_marginBottom="@dimen/widget_margin"
-            android:gravity="center"
-            android:text="@string/closed_prs"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toTopOf="@+id/contentListView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.2"
-            tools:text="@string/closed_prs"
-            tools:visibility="visible" />
+            android:layout_gravity="center"
+            android:orientation="horizontal"
+            android:padding="@dimen/widget_margin">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/widget_margin"
+                android:layout_marginBottom="@dimen/widget_margin"
+                android:layout_weight="0.5"
+                android:gravity="center"
+                android:text="@string/closed_prs"
+                android:textSize="20sp"
+                tools:text="@string/data_not_available"
+                tools:visibility="visible" />
+
+            <Button
+                android:id="@+id/changeRepoButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/widget_margin"
+                android:layout_marginTop="@dimen/widget_margin"
+                android:layout_marginBottom="@dimen/widget_margin"
+                android:layout_weight="0.5"
+                android:gravity="center"
+                android:text="@string/change_repo"
+                android:textSize="@dimen/dimen_16sp"
+                tools:text="@string/change_repo"
+                tools:visibility="visible" />
+
+        </LinearLayout>
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/contentListView"

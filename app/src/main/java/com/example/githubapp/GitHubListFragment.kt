@@ -1,16 +1,17 @@
 package com.example.githubapp
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.githubapp.api.ApiBuilder
+import com.example.githubapp.models.ApiConstants
 import com.example.githubapp.models.GitRepoInfo
 import com.example.githubapp.models.Status
 import com.example.githubapp.viewmodel.GitHubViewModel
@@ -24,6 +25,8 @@ class GitHubListFragment : Fragment(), GitHubInfoRecyclerViewAdapter.OnItemClick
 
     private lateinit var viewModel: GitHubViewModel
     private lateinit var adapter: GitHubInfoRecyclerViewAdapter
+    private var owner: String = ApiConstants.owner
+    private var repo: String = ApiConstants.repo
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,6 +38,12 @@ class GitHubListFragment : Fragment(), GitHubInfoRecyclerViewAdapter.OnItemClick
             setupUI(viewGroup)
         }
         return viewGroup
+    }
+
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        processExtras()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -52,7 +61,7 @@ class GitHubListFragment : Fragment(), GitHubInfoRecyclerViewAdapter.OnItemClick
             )
         ).get(GitHubViewModel::class.java)
         CoroutineScope(Dispatchers.Default).launch {
-            viewModel.fetchGitHubClosedPRInfo()
+            viewModel.fetchGitHubClosedPRInfo(owner, repo)
         }
     }
 
@@ -70,6 +79,11 @@ class GitHubListFragment : Fragment(), GitHubInfoRecyclerViewAdapter.OnItemClick
             )
         )
         viewGroup.contentListView.adapter = adapter
+        viewGroup.changeRepoButton.setOnClickListener {
+            val transaction = activity?.supportFragmentManager?.beginTransaction()
+            transaction?.replace(R.id.contentFragment, ChangeRepoFragment())
+            transaction?.commit()
+        }
     }
 
     private fun updateList(repoInfoList: List<GitRepoInfo>) {
@@ -84,23 +98,36 @@ class GitHubListFragment : Fragment(), GitHubInfoRecyclerViewAdapter.OnItemClick
                     viewGroup.progressBar.visibility = View.GONE
                     it.data?.let { repoInfoList -> updateList(repoInfoList) }
                     viewGroup.contentListView.visibility = View.VISIBLE
+                    viewGroup.textView.text = context?.resources?.getString(R.string.closed_prs)
+                    viewGroup.textView.visibility = View.VISIBLE
+                    viewGroup.changeRepoButton.visibility = View.VISIBLE
+                }
+                Status.ERROR -> {
+                    //Handle Error
+                    viewGroup.progressBar.visibility = View.GONE
+                    viewGroup.changeRepoButton.visibility = View.VISIBLE
+                    viewGroup.textView.text = it.message
                     viewGroup.textView.visibility = View.VISIBLE
                 }
                 Status.LOADING -> {
                     viewGroup.progressBar.visibility = View.VISIBLE
                     viewGroup.contentListView.visibility = View.GONE
                     viewGroup.textView.visibility = View.GONE
-                }
-                Status.ERROR -> {
-                    //Handle Error
-                    viewGroup.progressBar.visibility = View.GONE
-                    viewGroup.textView.visibility = View.GONE
-                    Toast.makeText(viewGroup.progressBar.context, it.message, Toast.LENGTH_LONG)
-                        .show()
+                    viewGroup.changeRepoButton.visibility = View.GONE
                 }
             }
         })
     }
+
+    private fun processExtras() {
+        arguments?.getString("owner")?.let {
+            owner = it
+        }
+        arguments?.getString("repo")?.let {
+            repo = it
+        }
+    }
+
 
     private fun loadFragment(fragment: Fragment, position: Int) {
         fragment.apply {

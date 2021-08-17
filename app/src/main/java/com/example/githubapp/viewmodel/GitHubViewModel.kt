@@ -10,9 +10,9 @@ import com.example.githubapp.models.Resource
 class GitHubViewModel(private val repository: GitHubRepository) : ViewModel() {
     private val gitHubRepoList = MutableLiveData<Resource<List<GitRepoInfo>>>()
 
-    suspend fun fetchGitHubClosedPRInfo() {
+    suspend fun fetchGitHubClosedPRInfo(owner: String, repo: String) {
         gitHubRepoList.postValue(Resource.loading(null))
-        repository.fetchGitRepoInfoFromApi(gitHubRepoList)
+        repository.fetchGitRepoInfoFromApi(gitHubRepoList, owner, repo)
     }
 
     fun getGitHubRepoList(): LiveData<Resource<List<GitRepoInfo>>> {

@@ -14,11 +14,13 @@ import retrofit2.Response
 class GitHubRepository(private val apiService: ApiService) {
 
     suspend fun fetchGitRepoInfoFromApi(
-        repoInfoLiveData: MutableLiveData<Resource<List<GitRepoInfo>>>
+        repoInfoLiveData: MutableLiveData<Resource<List<GitRepoInfo>>>,
+        owner: String,
+        repo: String
     ) = withContext(Dispatchers.Default) {
         val repoInfoApiCall = apiService.fetchGitPullRequestInfo(
-            ApiConstants.owner,
-            ApiConstants.repo,
+            owner,
+            repo,
             ApiConstants.state
         )
         repoInfoApiCall.enqueue(object : Callback<List<GitRepoInfo>> {
@@ -38,6 +40,13 @@ class GitHubRepository(private val apiService: ApiService) {
                 response?.let {
                     if (it.isSuccessful && it.body() is List<GitRepoInfo>) {
                         repoInfoLiveData.postValue(Resource.success(it.body() as List<GitRepoInfo>))
+                    } else {
+                        repoInfoLiveData.postValue(
+                            Resource.error(
+                                "Data is Unavailable with given repo details",
+                                emptyList()
+                            )
+                        )
                     }
                 }
             }
