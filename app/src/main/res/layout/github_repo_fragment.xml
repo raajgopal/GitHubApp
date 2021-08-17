@@ -46,7 +46,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginLeft="@dimen/widget_margin"
+                android:layout_marginStart="@dimen/widget_margin"
                 android:layout_marginTop="@dimen/widget_margin"
                 android:layout_marginBottom="@dimen/widget_margin"
                 android:layout_weight="0.5"
